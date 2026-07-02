@@ -30,8 +30,10 @@ Use this skill when product or competitor work benefits from both web discovery 
 - Use `topic=news` and `time_range` for launches, market moves, or product announcements.
 - Use `select_paths` for `/products`, `/pricing`, `/category`, `/collections`, `/docs`, `/blog`, `/changelog`, `/customers`, or `/case-studies`.
 - Use `exclude_paths` for login, cart, checkout, account, admin, tags, and unrelated pages.
+- Cap extract batches at 20 URLs. If there are more candidates, dedupe, rank by page type, source quality, and relevance, then process in batches.
 - Use `extract_depth=advanced` for product tables, pricing matrices, specs, structured content, and dynamic pages.
 - For crawl, start with `max_depth=1`, `max_breadth=20`, `limit=20`, `instructions`, and `chunks_per_source=3`.
+- Report failed extraction or crawl results explicitly, especially when failures affect products, pricing, specs, or competitor coverage.
 
 ## Output
 

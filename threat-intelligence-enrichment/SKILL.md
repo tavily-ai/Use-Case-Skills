@@ -30,7 +30,9 @@ Prioritize authoritative and recent sources. Separate confirmed facts from unver
 - Use `topic=news` plus `time_range=week` or `month` for active exploitation and recent incidents.
 - Use domain filters for high-trust sources such as vendor domains, cisa.gov, nvd.nist.gov, cve.org, cert/cc, and reputable security research sites.
 - Use `extract_depth=advanced` for advisory tables, affected-version matrices, patch notes, and structured security pages.
+- Cap extract batches at 20 URLs. If there are more candidates, dedupe, rank by source authority and threat relevance, then process in batches.
 - For crawl, start with `max_depth=1`, `limit=20`, strict `select_paths`, semantic `instructions`, and `chunks_per_source=3`.
+- Report failed extraction or crawl results explicitly, especially when failures affect vendor advisories, CVE records, or mitigation evidence.
 
 ## Output
 

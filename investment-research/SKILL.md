@@ -28,8 +28,10 @@ This is the one skill where Tavily research is often justified because investor 
 - Use `search_depth=advanced` for exact financial metrics, management quotes, filings, company-specific claims, or comparable-company details.
 - Use domain filters for high-trust sources such as company investor relations sites, SEC/filing domains, exchange pages, regulators, and reputable financial publications.
 - Use extract with a focused `query` and `chunks_per_source=3` for long filings, transcripts, and reports.
+- Cap extract batches at 20 URLs. If there are more candidates, dedupe, rank by source authority and relevance, then process in batches.
 - When using research, include prior known assumptions so the report does not spend time rediscovering context.
 - Use structured output only if the user needs a machine-readable table or pipeline-ready fields; otherwise produce a readable memo.
+- Report failed extraction or crawl results explicitly, especially for filings, transcripts, IR pages, or cited sources.
 
 ## Output
 

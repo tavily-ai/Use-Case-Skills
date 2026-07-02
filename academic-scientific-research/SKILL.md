@@ -29,8 +29,10 @@ Use search and extract for most tasks. Reserve slower research only for full lit
 - Use `time_range`, `start_date`, or `end_date` for recent literature or historically bounded reviews.
 - Use domain filters for trusted scholarly and official sources; keep include-domain lists short and relevant.
 - Use extract `query` and `chunks_per_source=2-3` for long papers, reviews, or guidelines to prevent context bloat.
+- Cap extract batches at 20 URLs. If there are more candidates, dedupe, rank by source type and relevance, then process in batches.
 - Use `extract_depth=advanced` for tables, structured results, figures, or complex publisher pages.
 - For known conference, journal, lab, or proceedings sites, use `map` first, then extract selected URLs; crawl only if the user needs broad collection.
+- Report failed extraction or crawl results explicitly, especially when failures affect key papers, guidelines, or primary sources.
 
 ## Output
 

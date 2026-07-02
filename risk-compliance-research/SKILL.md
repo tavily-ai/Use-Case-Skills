@@ -31,7 +31,9 @@ Use fast targeted search and extraction. Treat the result as research support, n
 - Use `topic=news` plus `time_range` for recent adverse media or incidents.
 - Use `include_domains` for official regulators, court systems, sanctions lists, recall databases, and trusted publications when appropriate.
 - Use `extract_depth=advanced` for registry tables, enforcement databases, sanctions pages, filings, and structured records.
+- Cap extract batches at 20 URLs. If there are more candidates, dedupe, rank by official source authority and risk relevance, then process in batches.
 - For crawl, start with `max_depth=1`, `limit=20`, and strict `select_paths`; add `instructions` and `chunks_per_source=3` for semantic focus.
+- Report failed extraction or crawl results explicitly, especially when failures affect official registries, sanctions pages, or high-risk findings.
 - Always preserve searched aliases, jurisdictions, source URLs, and gaps so a reviewer can reproduce or extend the screen.
 
 ## Output

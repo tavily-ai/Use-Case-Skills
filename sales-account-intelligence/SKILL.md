@@ -28,8 +28,10 @@ Optimize for fast, useful account context with cited sources.
 - Use `search_depth=basic` for broad account discovery and `advanced` for precise claims, executive details, metrics, or buyer initiatives.
 - Use `topic=news` plus `time_range=month` or `year` for trigger events.
 - Use extract `query` and `chunks_per_source=2-3` on long pages to keep the brief focused.
+- Cap extract batches at 20 URLs. If there are more candidates, dedupe, rank by source quality and account relevance, then process in batches.
 - Use `extract_depth=advanced` for tables, pricing pages, customer lists, or dynamic pages.
 - For crawl, start with `max_depth=1`, `max_breadth=20`, `limit=20`, and targeted `select_paths`.
+- Report failed extraction or crawl results explicitly, especially when failures affect trigger events, official pages, or customer evidence.
 
 ## Output
 

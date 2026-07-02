@@ -31,9 +31,11 @@ For crawl tasks, set tight limits first. Prefer scoped paths and instructions, f
 - Use `search_depth=basic` for broad market discovery and `advanced` for precise product, pricing, technical, or SKU facts.
 - Use `topic=news` and `time_range` for recent launches, funding, partnerships, or market moves.
 - Use `map` before `crawl` on large ecommerce, docs, marketplace, or competitor sites; inspect URL patterns, then choose targeted paths.
+- Cap extract batches at 20 URLs. If there are more candidates, dedupe, rank by page type, source quality, and relevance, then process in batches.
 - For crawls, start with `max_depth=1`, `max_breadth=20`, `limit=20`, `instructions`, and `chunks_per_source=3`.
 - Use `select_paths` for product, pricing, category, docs, blog, changelog, customer, or case-study sections; use `exclude_paths` for login, cart, account, admin, tag, and unrelated pages.
 - Use `extract_depth=advanced` for product tables, pricing matrices, structured specs, dynamic pages, and rich content.
+- Report failed extraction or crawl results explicitly, especially when failures affect products, pricing, or competitor coverage.
 
 ## Output
 

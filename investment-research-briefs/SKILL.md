@@ -30,7 +30,9 @@ Use research for true report-style synthesis, but use search and extract for fas
 - Use `search_depth=advanced` for filings, financial metrics, quotes, comparable companies, and company-specific claims.
 - Use domain filters for investor relations sites, SEC/filing domains, exchanges, regulators, and reputable financial publications.
 - Use extract `query` and `chunks_per_source=3` for long filings, transcripts, reports, and presentations.
+- Cap extract batches at 20 URLs. If there are more candidates, dedupe, rank by source authority and relevance, then process in batches.
 - Include prior assumptions in research prompts so the research does not spend time rediscovering known context.
+- Report failed extraction or crawl results explicitly, especially for filings, transcripts, IR pages, or cited sources.
 
 ## Output
 

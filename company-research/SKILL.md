@@ -35,8 +35,9 @@ Keep queries short and specific. Prefer multiple targeted searches over one long
 - Use domain filters for trusted targets, such as the company domain, SEC/filing domains, credible business press, or known industry publications.
 - Use `include_raw_content` only for quick prototypes or when search results are very likely to be sufficient; otherwise use the two-step search, filter, extract pattern.
 - For extract, start with `extract_depth=basic`; retry with `advanced` for JavaScript-heavy pages, tables, pricing, or structured content.
+- Cap extract batches at 20 URLs. If there are more candidates, dedupe, rank by source quality and relevance, then process in batches.
 - For crawl, start conservatively with `max_depth=1`, `max_breadth=20`, and `limit=20`; add `instructions` and `chunks_per_source=3` for focused agentic use.
-- Monitor failed extraction or crawl results and report any important source gaps.
+- Report failed extraction or crawl results explicitly, especially when failures affect important source coverage.
 
 ## Output
 
