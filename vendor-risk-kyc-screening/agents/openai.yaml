@@ -1,4 +1,0 @@
-interface:
-  display_name: "Vendor Risk KYC Screening"
-  short_description: "Screen vendors and entities for risk"
-  default_prompt: "Use $vendor-risk-kyc-screening to screen a vendor for KYC, adverse media, sanctions, and regulatory risk."

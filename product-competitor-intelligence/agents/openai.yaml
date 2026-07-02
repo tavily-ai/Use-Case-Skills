@@ -1,4 +1,0 @@
-interface:
-  display_name: "Product Competitor Intelligence"
-  short_description: "Compare products, SKUs, and competitors"
-  default_prompt: "Use $product-competitor-intelligence to compare competitor products, pricing, and positioning."

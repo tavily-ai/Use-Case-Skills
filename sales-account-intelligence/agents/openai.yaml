@@ -1,4 +1,0 @@
-interface:
-  display_name: "Sales Account Intelligence"
-  short_description: "Build account briefs for sales teams"
-  default_prompt: "Use $sales-account-intelligence to prepare a sales-ready account brief for a target company."

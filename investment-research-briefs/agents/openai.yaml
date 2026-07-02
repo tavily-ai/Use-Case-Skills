@@ -1,4 +1,0 @@
-interface:
-  display_name: "Investment Research Briefs"
-  short_description: "Draft investor-focused research briefs"
-  default_prompt: "Use $investment-research-briefs to produce a concise investment brief on a company, sector, or market theme."
