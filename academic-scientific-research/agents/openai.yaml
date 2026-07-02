@@ -1,0 +1,4 @@
+interface:
+  display_name: "Academic Scientific Research"
+  short_description: "Find and synthesize papers and evidence"
+  default_prompt: "Use $academic-scientific-research to find papers and summarize the evidence on a research question."

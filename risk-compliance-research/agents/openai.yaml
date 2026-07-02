@@ -1,0 +1,4 @@
+interface:
+  display_name: "Risk Compliance Research"
+  short_description: "Screen vendors, companies, and risks"
+  default_prompt: "Use $risk-compliance-research to screen a company for adverse media, sanctions, and regulatory risk."
