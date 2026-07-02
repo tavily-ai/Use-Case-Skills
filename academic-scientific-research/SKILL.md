@@ -10,10 +10,11 @@ description: Find, screen, and synthesize academic papers, scientific literature
 Use search and extract for most tasks. Reserve slower research only for full literature review requests.
 
 1. Translate the user's question into search terms, synonyms, key entities, and likely source domains.
-2. Use `tvly search` with domain filters when appropriate, such as arxiv.org, pubmed.ncbi.nlm.nih.gov, nih.gov, nature.com, science.org, acm.org, ieee.org, or scholar-friendly publisher pages.
-3. Use `tvly extract` on abstracts, full text pages, preprints, review articles, guidelines, or publisher pages.
-4. Use `tvly research` only when the user explicitly asks for a full literature review or broad multi-source synthesis.
-5. Distinguish primary studies, review papers, preprints, editorials, guidelines, and news coverage.
+2. Break broad questions into short sub-queries under 400 characters: core concept, synonyms, method names, target population/data, benchmark/dataset, author/lab, and year range.
+3. Use `tvly search` with domain filters when appropriate, such as arxiv.org, pubmed.ncbi.nlm.nih.gov, nih.gov, nature.com, science.org, acm.org, ieee.org, or scholar-friendly publisher pages.
+4. Use `tvly extract` with a focused `query` and `chunks_per_source` on abstracts, full text pages, preprints, review articles, guidelines, or publisher pages.
+5. Use `tvly research` only when the user explicitly asks for a full literature review or broad multi-source synthesis.
+6. Distinguish primary studies, review papers, preprints, editorials, guidelines, and news coverage.
 
 ## Endpoint Selection
 
@@ -21,6 +22,15 @@ Use search and extract for most tasks. Reserve slower research only for full lit
 - Use `research` for broad literature reviews, research landscapes, and multi-method comparisons.
 - Use `map` only for navigating a known lab, journal, conference, or documentation site.
 - Use `crawl` only when collecting many pages from a known source, such as proceedings, a lab publication list, or a technical docs section.
+
+## Parameter Guidance
+
+- Use `search_depth=advanced` for precise paper, method, benchmark, clinical, or citation-sensitive questions.
+- Use `time_range`, `start_date`, or `end_date` for recent literature or historically bounded reviews.
+- Use domain filters for trusted scholarly and official sources; keep include-domain lists short and relevant.
+- Use extract `query` and `chunks_per_source=2-3` for long papers, reviews, or guidelines to prevent context bloat.
+- Use `extract_depth=advanced` for tables, structured results, figures, or complex publisher pages.
+- For known conference, journal, lab, or proceedings sites, use `map` first, then extract selected URLs; crawl only if the user needs broad collection.
 
 ## Output
 

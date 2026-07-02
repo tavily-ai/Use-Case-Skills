@@ -1,0 +1,4 @@
+interface:
+  display_name: "Threat Intelligence Enrichment"
+  short_description: "Enrich CVEs, IOCs, and advisories"
+  default_prompt: "Use $threat-intelligence-enrichment to enrich a CVE, IOC, vendor advisory, or threat report."

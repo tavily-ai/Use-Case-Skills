@@ -9,6 +9,8 @@ This repo intentionally organizes skills by broad use case instead of by endpoin
 - `crawl` for scoped multi-page collection
 - `research` only for deep report-style synthesis
 
+Each skill applies Tavily best practices: short sub-queries, explicit search depth selection, source filtering before extraction, targeted extract chunks, map-before-crawl planning, conservative crawl limits, and research prompts with clear goals and prior context.
+
 ## Skills
 
 | Skill | Primary use case | Default Tavily pattern |
@@ -18,6 +20,16 @@ This repo intentionally organizes skills by broad use case instead of by endpoin
 | `investment-research` | Investment memos, portfolio monitoring, company/sector diligence | `research` for full reports, `search + extract` for checks |
 | `academic-scientific-research` | Papers, scientific literature, methods, evidence summaries | `search + extract` |
 | `risk-compliance-research` | KYC, adverse media, sanctions, vendor and supplier risk | `search + extract` |
+
+## Market-Facing Skills
+
+| Skill | Primary use case | Default Tavily pattern |
+| --- | --- | --- |
+| `vendor-risk-kyc-screening` | Vendor onboarding, KYC, adverse media, sanctions, and supplier risk | `search + extract` |
+| `sales-account-intelligence` | Sales prep, account briefs, buyer research, and trigger events | `search + extract` |
+| `product-competitor-intelligence` | Product/SKU discovery, pricing/spec extraction, and competitor intelligence | `search + extract`, with `map/crawl` for site-scale work |
+| `threat-intelligence-enrichment` | CVE, IOC, advisory, exploit, mitigation, and incident enrichment | `search + extract` |
+| `investment-research-briefs` | Concise investor briefs, sector snapshots, and risk/catalyst memos | `research` for full briefs, `search + extract` for checks |
 
 ## Design
 
