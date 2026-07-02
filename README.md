@@ -46,7 +46,3 @@ Each skill applies Tavily best practices: short sub-queries, explicit search dep
 ## Design
 
 These skills are designed to compose the endpoint-oriented Tavily skills from `tavily-ai/skills` into marketable workflows that map to common customer needs.
-
-## Standalone Testing
-
-Use `examples/codex-standalone/` to run Codex against an isolated skill set containing only the Tavily endpoint skills and this repo's use-case skills.
