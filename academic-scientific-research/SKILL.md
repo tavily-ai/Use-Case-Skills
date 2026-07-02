@@ -1,6 +1,16 @@
 ---
 name: academic-scientific-research
 description: Find, screen, and synthesize academic papers, scientific literature, technical reports, preprints, clinical or biomedical publications, and evidence around a research question. Use when the user asks to find papers, summarize literature, compare methods, identify seminal or recent work, extract claims from studies, or build a source-grounded academic/scientific evidence brief.
+license: MIT
+metadata:
+  author: tavily
+  version: "0.1.0"
+  homepage: https://www.tavily.com
+  source: https://github.com/tavily-ai/use-case-skills
+inputs:
+  - name: TAVILY_API_KEY
+    description: Tavily API key for Tavily CLI requests.
+    required: true
 ---
 
 # Academic Scientific Research

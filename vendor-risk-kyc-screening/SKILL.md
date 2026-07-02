@@ -1,6 +1,16 @@
 ---
 name: vendor-risk-kyc-screening
 description: Screen vendors, merchants, suppliers, counterparties, companies, executives, and related entities for vendor risk, KYC, adverse media, sanctions, regulatory actions, litigation, recalls, supplier risk, cybersecurity incidents, and compliance concerns. Use when the user asks for vendor onboarding research, KYC screening, supplier due diligence, merchant case research, or a source-grounded risk brief.
+license: MIT
+metadata:
+  author: tavily
+  version: "0.1.0"
+  homepage: https://www.tavily.com
+  source: https://github.com/tavily-ai/use-case-skills
+inputs:
+  - name: TAVILY_API_KEY
+    description: Tavily API key for Tavily CLI requests.
+    required: true
 ---
 
 # Vendor Risk KYC Screening

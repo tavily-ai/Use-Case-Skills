@@ -1,6 +1,16 @@
 ---
 name: investment-research-briefs
 description: Create concise investment research briefs, company memos, sector snapshots, portfolio monitoring updates, earnings/news summaries, risk and catalyst briefs, and market thesis support. Use when the user asks for an investor-focused brief on a company, sector, public/private market, comparable set, or portfolio theme.
+license: MIT
+metadata:
+  author: tavily
+  version: "0.1.0"
+  homepage: https://www.tavily.com
+  source: https://github.com/tavily-ai/use-case-skills
+inputs:
+  - name: TAVILY_API_KEY
+    description: Tavily API key for Tavily CLI requests.
+    required: true
 ---
 
 # Investment Research Briefs

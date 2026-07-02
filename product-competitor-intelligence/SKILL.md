@@ -1,6 +1,16 @@
 ---
 name: product-competitor-intelligence
 description: Research competitor products, SKUs, pricing, packaging, positioning, feature comparisons, product catalogs, category pages, retailer listings, marketplace data, and market intelligence. Use when the user asks for competitor SKU discovery, product data enrichment, pricing/spec extraction, product comparison, market intelligence, or crawl/map-driven product research.
+license: MIT
+metadata:
+  author: tavily
+  version: "0.1.0"
+  homepage: https://www.tavily.com
+  source: https://github.com/tavily-ai/use-case-skills
+inputs:
+  - name: TAVILY_API_KEY
+    description: Tavily API key for Tavily CLI requests.
+    required: true
 ---
 
 # Product Competitor Intelligence

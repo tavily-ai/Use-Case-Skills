@@ -1,6 +1,16 @@
 ---
 name: sales-account-intelligence
 description: Build sales-ready account intelligence for companies, prospects, customers, partners, and target buyers. Use when the user asks for sales prep, account brief, meeting prep, buyer research, expansion signals, customer intelligence, trigger events, executive context, outreach angles, or market/account context for GTM teams.
+license: MIT
+metadata:
+  author: tavily
+  version: "0.1.0"
+  homepage: https://www.tavily.com
+  source: https://github.com/tavily-ai/use-case-skills
+inputs:
+  - name: TAVILY_API_KEY
+    description: Tavily API key for Tavily CLI requests.
+    required: true
 ---
 
 # Sales Account Intelligence
