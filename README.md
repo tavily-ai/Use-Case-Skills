@@ -15,22 +15,17 @@ Each skill applies Tavily best practices: short sub-queries, explicit search dep
 
 | Skill | Primary use case | Default Tavily pattern |
 | --- | --- | --- |
-| `company-research` | Company, account, sales, customer, partner, and vendor briefs | `search + extract` |
-| `market-competitor-research` | Competitors, markets, products, SKUs, pricing, and positioning | `search + extract`, with `map/crawl` for site-scale work |
-| `investment-research` | Investment memos, portfolio monitoring, company/sector diligence | `research` for full reports, `search + extract` for checks |
-| `academic-scientific-research` | Papers, scientific literature, methods, evidence summaries | `search + extract` |
-| `risk-compliance-research` | KYC, adverse media, sanctions, vendor and supplier risk | `search + extract` |
-
-## Market-Facing Skills
-
-| Skill | Primary use case | Default Tavily pattern |
-| --- | --- | --- |
 | `vendor-risk-kyc-screening` | Vendor onboarding, KYC, adverse media, sanctions, and supplier risk | `search + extract` |
 | `sales-account-intelligence` | Sales prep, account briefs, buyer research, and trigger events | `search + extract` |
 | `product-competitor-intelligence` | Product/SKU discovery, pricing/spec extraction, and competitor intelligence | `search + extract`, with `map/crawl` for site-scale work |
 | `threat-intelligence-enrichment` | CVE, IOC, advisory, exploit, mitigation, and incident enrichment | `search + extract` |
 | `investment-research-briefs` | Concise investor briefs, sector snapshots, and risk/catalyst memos | `research` for full briefs, `search + extract` for checks |
+| `academic-scientific-research` | Papers, scientific literature, methods, evidence summaries | `search + extract` |
 
 ## Design
 
 These skills are designed to compose the endpoint-oriented Tavily skills from `tavily-ai/skills` into marketable workflows that map to common customer needs.
+
+## Standalone Testing
+
+Use `examples/codex-standalone/` to run Codex against an isolated skill set containing only the Tavily endpoint skills and this repo's use-case skills.

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Company Research"
-  short_description: "Research companies for sales and strategy"
-  default_prompt: "Use $company-research to build a concise company brief for a target account."

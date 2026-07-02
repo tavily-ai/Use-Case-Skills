@@ -1,4 +1,0 @@
-interface:
-  display_name: "Market Competitor Research"
-  short_description: "Analyze competitors, markets, and products"
-  default_prompt: "Use $market-competitor-research to compare competitors and summarize market signals."

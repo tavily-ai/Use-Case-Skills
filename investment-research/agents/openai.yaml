@@ -1,4 +1,0 @@
-interface:
-  display_name: "Investment Research"
-  short_description: "Create investor-grade research briefs"
-  default_prompt: "Use $investment-research to produce a source-grounded investment brief on a company or sector."
