@@ -8,6 +8,7 @@ description: Research competitor products, SKUs, pricing, packaging, positioning
 ## Workflow
 
 Use this skill when product or competitor work benefits from both web discovery and site-level URL discovery.
+Use Tavily through the CLI or equivalent Tavily endpoint skill/tool surface.
 
 1. Clarify the category, competitors, geography, target customer, price band, feature set, and desired output format.
 2. Split broad questions into short sub-queries: competitors, product category, pricing, alternatives, reviews, SKUs, specs, marketplaces, and recent launches.

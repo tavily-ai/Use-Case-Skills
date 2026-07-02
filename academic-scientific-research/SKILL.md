@@ -8,6 +8,7 @@ description: Find, screen, and synthesize academic papers, scientific literature
 ## Workflow
 
 Use search and extract for most tasks. Reserve slower research only for full literature review requests.
+Use Tavily through the CLI or equivalent Tavily endpoint skill/tool surface.
 
 1. Translate the user's question into search terms, synonyms, key entities, and likely source domains.
 2. Break broad questions into short sub-queries under 400 characters: core concept, synonyms, method names, target population/data, benchmark/dataset, author/lab, and year range.

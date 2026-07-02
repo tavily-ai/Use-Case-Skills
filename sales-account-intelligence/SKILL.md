@@ -8,6 +8,7 @@ description: Build sales-ready account intelligence for companies, prospects, cu
 ## Workflow
 
 Optimize for fast, useful account context with cited sources.
+Use Tavily through the CLI or equivalent Tavily endpoint skill/tool surface.
 
 1. Define the account, audience, sales motion, geography, and meeting or outreach goal.
 2. Split research into short sub-queries under 400 characters: company overview, recent news, products, customers, leadership, funding/financials, hiring, partnerships, pain points, and relevant initiatives.

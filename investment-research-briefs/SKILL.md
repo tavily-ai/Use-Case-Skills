@@ -8,6 +8,7 @@ description: Create concise investment research briefs, company memos, sector sn
 ## Workflow
 
 Use research for true report-style synthesis, but use search and extract for faster briefs or source checks.
+Use Tavily through the CLI or equivalent Tavily endpoint skill/tool surface.
 
 1. Define the target, investor lens, geography, timeframe, asset type, and desired depth.
 2. For quick briefs, split into short sub-queries: business overview, market position, financial/operating signals, recent developments, competitors, risks, catalysts, and valuation/comps if requested.

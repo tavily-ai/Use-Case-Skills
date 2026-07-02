@@ -8,6 +8,7 @@ description: Screen vendors, merchants, suppliers, counterparties, companies, ex
 ## Workflow
 
 Treat this as research support, not a final compliance determination.
+Use Tavily through the CLI or equivalent Tavily endpoint skill/tool surface.
 
 1. Identify the entity, aliases, parent/subsidiaries, executives, jurisdictions, products, and risk categories.
 2. Break the screen into short sub-queries under 400 characters for each alias and risk type: sanctions, enforcement, litigation, regulatory warning, recall, adverse media, cybersecurity incident, supplier risk, and jurisdiction.

@@ -8,6 +8,7 @@ description: Enrich threat intelligence from CVEs, IOCs, malware names, threat a
 ## Workflow
 
 Prioritize authoritative and recent sources. Separate confirmed facts from unverified reporting.
+Use Tavily through the CLI or equivalent Tavily endpoint skill/tool surface.
 
 1. Identify the input type: CVE, IOC, malware/tool, threat actor, vendor/product, advisory URL, incident, or campaign.
 2. Break the task into short sub-queries: identifier, affected product, exploit status, vendor advisory, patches, mitigations, exploitation in the wild, and recent reporting.
