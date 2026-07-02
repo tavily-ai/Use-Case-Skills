@@ -1,7 +1,5 @@
 # Use Case Skills
 
-![Tavily](assets/tavily-primary-logo-white.png)
-
 Outcome-oriented Tavily skills for common research workflows.
 
 This repo is the use-case workflow counterpart to the Tavily CLI skills in [tavily-ai/skills](https://github.com/tavily-ai/skills). The Tavily endpoint skills expose `tvly search`, `tvly extract`, `tvly map`, `tvly crawl`, and `tvly research`; this pack composes those capabilities into repeatable business and research deliverables.
