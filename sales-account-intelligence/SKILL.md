@@ -9,7 +9,7 @@ metadata:
   source: https://github.com/tavily-ai/use-case-skills
 inputs:
   - name: TAVILY_API_KEY
-    description: Tavily API key for Tavily CLI requests.
+    description: Tavily API key for endpoint requests.
     required: true
 ---
 
@@ -17,43 +17,71 @@ inputs:
 
 ## Workflow
 
-Optimize for fast, useful account context with cited sources.
-Use Tavily through the CLI or equivalent Tavily endpoint skill/tool surface.
+Use search and extract to produce fast, useful sales account context with cited sources; use map or crawl only when a known company site needs scoped navigation. Keep this skill focused on research planning, query construction, source selection, and sales-ready synthesis; execution mechanics should come from companion endpoint skills.
 
-1. Define the account, audience, sales motion, geography, and meeting or outreach goal.
-2. Split research into short sub-queries under 400 characters: company overview, recent news, products, customers, leadership, funding/financials, hiring, partnerships, pain points, and relevant initiatives.
-3. Use search for discovery, then filter by source quality before extracting.
-4. Extract the strongest sources: official website, newsroom, product pages, customer stories, investor/press pages, credible news, job postings, and relevant executive profiles.
-5. Use map when the company site is large and useful pages are hard to find.
-6. Use crawl only for scoped site sections such as `/customers`, `/case-studies`, `/news`, `/products`, `/solutions`, or `/careers`.
+- Define the account, audience, sales motion, geography, and meeting or outreach goal.
+- Split research into short subqueries under 400 characters: company overview, recent news, products, customers, leadership, funding/financials, hiring, partnerships, pain points, and relevant initiatives.
+- Use search for discovery, then filter by source quality before extracting.
+- Extract the strongest sources: official website, newsroom, product pages, customer stories, investor/press pages, credible news, job postings, and relevant executive profiles.
+- Use site navigation when the company site is large and useful pages are hard to find.
+- Collect scoped site sections only when the user needs broad coverage of customers, case studies, news, products, solutions, or careers.
 
-## Tavily Pattern
+## Research Budget
 
-- Default: `search + extract`
-- Known company domain: `map + extract`
-- Account site scan: `map + crawl + extract`
-- Deep strategic account report: `research` only when explicitly requested
+- Start with a small focused search set: account overview, recent triggers, product/initiative context, and buyer/pain-point evidence.
+- Extract only the strongest sources before drafting the brief.
+- Add more searches only for named gaps that block the brief, such as missing trigger events or missing official product context.
+- Do not use map until search finds the company domain and there is a specific buried page type to locate.
+- Do not use crawl for first-pass account prep unless the user explicitly asks for a site scan.
 
-## Parameter Guidance
+## Capability Guidance
 
-- Use `search_depth=basic` for broad account discovery and `advanced` for precise claims, executive details, metrics, or buyer initiatives.
-- Use `topic=news` plus `time_range=month` or `year` for trigger events.
-- Use extract `query` and `chunks_per_source=2-3` on long pages to keep the brief focused.
-- Cap extract batches at 20 URLs. If there are more candidates, dedupe, rank by source quality and account relevance, then process in batches.
-- Use `extract_depth=advanced` for tables, pricing pages, customer lists, or dynamic pages.
-- For crawl, start with `max_depth=1`, `max_breadth=20`, `limit=20`, and targeted `select_paths`.
-- Report failed extraction or crawl results explicitly, especially when failures affect trigger events, official pages, or customer evidence.
+- Use search for most account briefs, meeting prep, outreach research, and trigger-event checks.
+- Use extract on selected official pages, newsroom posts, customer stories, credible news, job postings, and executive profiles.
+- Use map when the company domain is known but important pages are buried.
+- Use crawl for account site scans only after narrowing to sections that support the sales goal.
+- Use research only when the user asks for a deep strategic account report.
 
-## Output
+## Query And Source Guidance
 
-Return a sales-ready brief:
+- Include company name, aliases, product names, executive names, industry terms, geography, and the sales motion in separate subqueries.
+- For trigger events, use explicit recency language and search for funding, hiring, partnerships, launches, expansion, regulation, incidents, and leadership changes.
+- Prioritize official company pages, newsroom posts, customer stories, product pages, investor or press pages, credible news, job postings, and relevant executive profiles.
+- Treat LinkedIn-style profile snippets, unsourced lists, and old syndicated pages as lower confidence.
+- Report failed or inaccessible sources when they affect trigger events, official pages, customer evidence, or buyer context.
 
-- Account snapshot
-- Recent trigger events
-- Business priorities and likely pain points
-- Relevant products, initiatives, customers, or markets
-- Buyer/executive context when available
-- Outreach angles and discovery questions
-- Source-backed evidence and gaps
+## Output Template
+
+Use this markdown structure and keep it practical:
+
+```markdown
+# Account Brief: <company>
+
+## Account Snapshot
+- What they do:
+- Size/market/geography:
+- Relevant products or business lines:
+
+## Trigger Events
+- <event>: <why it matters> ([source](URL))
+
+## Business Priorities And Likely Pain Points
+- Priority:
+- Evidence:
+- Sales relevance:
+
+## Buyer And Executive Context
+- Person/team:
+- Relevant context:
+- Confidence:
+
+## Outreach Angles
+- Angle:
+- Supporting evidence:
+- Discovery question:
+
+## Source Gaps
+- <missing or uncertain item>
+```
 
 Keep claims practical. Do not invent budget, intent, internal priorities, or buyer names when sources do not support them.

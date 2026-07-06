@@ -2,45 +2,42 @@
 
 Outcome-oriented Tavily skills for common research workflows.
 
-This repo is the use-case workflow counterpart to the Tavily CLI skills in [tavily-ai/skills](https://github.com/tavily-ai/skills). The Tavily endpoint skills expose `tvly search`, `tvly extract`, `tvly map`, `tvly crawl`, and `tvly research`; this pack composes those capabilities into repeatable business and research deliverables.
+This repo is the use-case workflow counterpart to the Tavily endpoint skills in [tavily-ai/skills](https://github.com/tavily-ai/skills). Endpoint-specific execution details should come from those companion skills; this pack focuses on how to plan, navigate, verify, and format high-value Tavily research workflows.
 
 ## Installation
 
-Install the Tavily CLI skills first:
+Install the endpoint skills from [tavily-ai/skills](https://github.com/tavily-ai/skills) alongside this repo. Use those skills for setup, authentication, and tool-specific execution details.
 
-```bash
-npx skills add https://github.com/tavily-ai/skills
-```
+This repo intentionally organizes skills by broad use case instead of by endpoint. Each skill chooses the right capability pattern internally:
 
-Install and authenticate the Tavily CLI:
+- search-oriented discovery followed by targeted extraction for fast source-grounded research
+- site mapping before extraction when a known domain needs URL discovery
+- scoped crawling only when many pages from a known section are needed
+- research only for deep report-style synthesis
 
-```bash
-curl -fsSL https://cli.tavily.com/install.sh | bash
-tvly login --api-key tvly-YOUR_KEY
-```
+Each skill applies Tavily best practices: short search queries under 400 characters, source filtering before extraction, map-before-crawl planning, conservative collection scope, clear research goals, citation hygiene, and explicit coverage gaps.
 
-Or set `TAVILY_API_KEY`. Get an API key at [tavily.com](https://www.tavily.com).
+Default execution discipline:
 
-This repo intentionally organizes skills by broad use case instead of by endpoint. Each skill chooses the right Tavily pattern internally:
-
-- `search + extract` for fast source-grounded research
-- `map + extract` when a known site needs URL discovery
-- `crawl` for scoped multi-page collection
-- `research` only for deep report-style synthesis
-
-Each skill applies Tavily best practices: short sub-queries, explicit search depth selection, source filtering before extraction, targeted extract chunks, map-before-crawl planning, conservative crawl limits, and research prompts with clear goals and prior context.
+- Start with a small focused set of search queries, not the full possible query list.
+- Keep each search query under 400 characters.
+- Extract only the strongest sources needed for the deliverable.
+- Expand with additional searches only for named evidence gaps.
+- Use map only after search shows a known site has useful but buried pages.
+- Use crawl only after map identifies a narrow section worth collecting.
+- Stop when the output template can be filled with cited evidence and clear gaps.
 
 ## Skills
 
-| Skill | Primary use case | Default Tavily pattern |
+| Skill | Primary use case | Default capability pattern |
 | --- | --- | --- |
-| [`vendor-risk-kyc-screening`](vendor-risk-kyc-screening/SKILL.md) | Vendor onboarding, KYC, adverse media, sanctions, and supplier risk | `search + extract` |
-| [`sales-account-intelligence`](sales-account-intelligence/SKILL.md) | Sales prep, account briefs, buyer research, and trigger events | `search + extract` |
-| [`product-competitor-intelligence`](product-competitor-intelligence/SKILL.md) | Product/SKU discovery, pricing/spec extraction, and competitor intelligence | `search + extract`, with `map/crawl` for site-scale work |
-| [`threat-intelligence-enrichment`](threat-intelligence-enrichment/SKILL.md) | CVE, IOC, advisory, exploit, mitigation, and incident enrichment | `search + extract` |
-| [`investment-research-briefs`](investment-research-briefs/SKILL.md) | Concise investor briefs, sector snapshots, and risk/catalyst memos | `research` for full briefs, `search + extract` for checks |
-| [`academic-scientific-research`](academic-scientific-research/SKILL.md) | Papers, scientific literature, methods, evidence summaries | `search + extract` |
+| [`vendor-risk-kyc-screening`](vendor-risk-kyc-screening/SKILL.md) | Vendor onboarding, KYC, adverse media, sanctions, and supplier risk | discovery, source verification, targeted extraction |
+| [`sales-account-intelligence`](sales-account-intelligence/SKILL.md) | Sales prep, account briefs, buyer research, and trigger events | account discovery, source verification, targeted extraction |
+| [`product-competitor-intelligence`](product-competitor-intelligence/SKILL.md) | Product/SKU discovery, pricing/spec extraction, and competitor intelligence | discovery, site navigation, scoped collection |
+| [`threat-intelligence-enrichment`](threat-intelligence-enrichment/SKILL.md) | CVE, IOC, advisory, exploit, mitigation, and incident enrichment | exact-identifier discovery, authoritative extraction |
+| [`investment-research-briefs`](investment-research-briefs/SKILL.md) | Concise investor briefs, sector snapshots, and risk/catalyst memos | research synthesis, source verification |
+| [`academic-scientific-research`](academic-scientific-research/SKILL.md) | Papers, scientific literature, methods, evidence summaries | scholarly discovery, evidence extraction |
 
 ## Design
 
-These skills are designed to compose the endpoint-oriented Tavily skills from `tavily-ai/skills` into marketable workflows that map to common customer needs.
+These skills are designed to compose endpoint-oriented skills from `tavily-ai/skills` into marketable workflows that map to common customer needs.

@@ -9,7 +9,7 @@ metadata:
   source: https://github.com/tavily-ai/use-case-skills
 inputs:
   - name: TAVILY_API_KEY
-    description: Tavily API key for Tavily CLI requests.
+    description: Tavily API key for endpoint requests.
     required: true
 ---
 
@@ -17,44 +17,73 @@ inputs:
 
 ## Workflow
 
-Prioritize authoritative and recent sources. Separate confirmed facts from unverified reporting.
-Use Tavily through the CLI or equivalent Tavily endpoint skill/tool surface.
+Use search and extract to enrich security entities with authoritative and recent evidence; use map or crawl for known vendor portals or advisory collections. Keep this skill focused on query construction, source priority, verification, and security synthesis; execution mechanics should come from companion endpoint skills.
 
-1. Identify the input type: CVE, IOC, malware/tool, threat actor, vendor/product, advisory URL, incident, or campaign.
-2. Break the task into short sub-queries: identifier, affected product, exploit status, vendor advisory, patches, mitigations, exploitation in the wild, and recent reporting.
-3. Search first, using exact-match style queries for CVEs, hashes, domains, IPs, advisory IDs, and malware names.
-4. Filter sources before extraction. Prioritize NVD/CVE records, vendor advisories, CISA/agency alerts, security research blogs, reputable incident reports, and official patch notes.
-5. Extract selected pages with a focused `query` and `chunks_per_source=2-3`.
-6. Use map for vendor advisory portals or documentation sites when the relevant page is hard to find.
-7. Use crawl only for scoped advisory, changelog, release note, or documentation sections.
+- Identify the input type: CVE, IOC, malware/tool, threat actor, vendor/product, advisory URL, incident, or campaign.
+- Break the task into short subqueries under 400 characters: identifier, affected product, exploit status, vendor advisory, patches, mitigations, exploitation in the wild, and recent reporting.
+- Search first, using exact-match style queries for CVEs, hashes, domains, IPs, advisory IDs, and malware names.
+- Filter sources before extraction. Prioritize NVD/CVE records, vendor advisories, CISA/agency alerts, security research blogs, reputable incident reports, and official patch notes.
+- Extract selected pages that can support exploit status, impact, affected versions, mitigations, timeline, or confidence.
+- Use site navigation for vendor advisory portals or documentation sites when the relevant page is hard to find.
+- Collect scoped advisory, changelog, release note, or documentation sections only when the user needs broad coverage.
 
-## Tavily Pattern
+## Research Budget
 
-- Default: `search + extract`
-- Vendor portal discovery: `map + extract`
-- Advisory/doc collection: `map + crawl + extract`
-- Broad threat landscape report: `research` only when explicitly requested
+- Start with a small focused search set covering the identifier, vendor advisory, exploit status, and mitigation or patch evidence.
+- Extract only the strongest authoritative sources before drafting.
+- Add more searches only for named gaps, such as missing affected versions, missing patch notes, or unclear exploitation status.
+- Do not use map unless a known vendor portal or documentation site has a specific advisory or release note to locate.
+- Do not use crawl unless the user asks for coverage across many related advisories or docs pages.
 
-## Parameter Guidance
+## Capability Guidance
 
-- Use `search_depth=advanced` for CVEs, IOCs, exact advisory IDs, exploit status, and high-impact claims.
-- Use `topic=news` plus `time_range=week` or `month` for active exploitation and recent incidents.
-- Use domain filters for high-trust sources such as vendor domains, cisa.gov, nvd.nist.gov, cve.org, cert/cc, and reputable security research sites.
-- Use `extract_depth=advanced` for advisory tables, affected-version matrices, patch notes, and structured security pages.
-- Cap extract batches at 20 URLs. If there are more candidates, dedupe, rank by source authority and threat relevance, then process in batches.
-- For crawl, start with `max_depth=1`, `limit=20`, strict `select_paths`, semantic `instructions`, and `chunks_per_source=3`.
-- Report failed extraction or crawl results explicitly, especially when failures affect vendor advisories, CVE records, or mitigation evidence.
+- Use search for CVEs, IOCs, advisories, exploit status, affected versions, mitigations, and recent incident reporting.
+- Use extract on selected vendor advisories, CVE records, agency alerts, patch notes, and security research pages.
+- Use map when a vendor portal or documentation site is known but the specific advisory is hard to locate.
+- Use crawl for advisory/doc sets only when the user asks for coverage across many related pages.
+- Use research only for threat landscape reports or multi-campaign summaries.
 
-## Output
+## Query And Source Guidance
 
-Return:
+- Use exact identifiers in queries: CVE IDs, advisory IDs, product/version names, hashes, domains, IPs, malware names, and actor aliases.
+- Prioritize vendor advisories, NVD/CVE records, CISA or national agency alerts, CERT/CC, official patch notes, and reputable security research.
+- Treat social posts, exploit-db style references, and secondary news as supporting evidence unless confirmed by authoritative sources.
+- Separate "exploited in the wild", "public PoC", "theoretical exploitability", and "patched" as different statuses.
+- Report failed or inaccessible sources when they affect vendor advisories, CVE records, affected-version evidence, or mitigation guidance.
 
-- Entity or indicator enriched
-- Summary and current status
-- Affected products, versions, or systems when available
-- Exploit status and evidence quality
-- Mitigations, patches, detections, or recommended checks
-- Timeline of notable updates
-- Sources and confidence gaps
+## Output Template
+
+Use this markdown structure and label uncertainty:
+
+```markdown
+# Threat Intelligence Brief: <entity>
+
+## Summary
+- Current status:
+- Confidence:
+- Most important source:
+
+## Entity Details
+- Type:
+- Aliases/identifiers:
+- Related products or systems:
+
+## Impact And Exposure
+- Affected products/versions:
+- Exploit status:
+- Evidence quality:
+
+## Mitigation And Detection
+- Patches or mitigations:
+- Detection or hunting notes:
+- Recommended checks:
+
+## Timeline
+- <date>: <event> ([source](URL))
+
+## Sources And Gaps
+- Sources:
+- Gaps or unresolved claims:
+```
 
 Do not overstate attribution, exploitation, or compromise evidence. Label speculation and unverified claims.

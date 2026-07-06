@@ -9,7 +9,7 @@ metadata:
   source: https://github.com/tavily-ai/use-case-skills
 inputs:
   - name: TAVILY_API_KEY
-    description: Tavily API key for Tavily CLI requests.
+    description: Tavily API key for endpoint requests.
     required: true
 ---
 
@@ -17,46 +17,75 @@ inputs:
 
 ## Workflow
 
-Use research for true report-style synthesis, but use search and extract for faster briefs or source checks.
-Use Tavily through the CLI or equivalent Tavily endpoint skill/tool surface.
+Use search and extract for quick investor briefs and source checks, research for full investment memos, and map or crawl only for large known source collections. Keep this skill focused on research design, source selection, verification, and synthesis; execution mechanics should come from companion endpoint skills.
 
-1. Define the target, investor lens, geography, timeframe, asset type, and desired depth.
-2. For quick briefs, split into short sub-queries: business overview, market position, financial/operating signals, recent developments, competitors, risks, catalysts, and valuation/comps if requested.
-3. Search and extract from filings, investor relations pages, earnings materials, company pages, regulators, reputable financial media, and market sources.
-4. For deeper memos, use Tavily research with a clear goal, known context, constraints, target market, and desired output format.
-5. Use `model=mini` for narrow questions and `model=pro` for comprehensive multi-domain analysis.
-6. Verify specific cited metrics, quotes, management claims, or filings with extract after research.
+- Define the target, investor lens, geography, timeframe, asset type, and desired depth.
+- For quick briefs, split into short subqueries under 400 characters: business overview, market position, financial/operating signals, recent developments, competitors, risks, catalysts, and valuation/comps if requested.
+- Prefer filings, investor relations pages, earnings materials, company pages, regulators, exchanges, reputable financial media, and market sources.
+- For deeper memos, provide a clear research goal, known context, constraints, target market, and desired output shape.
+- Verify specific metrics, quotes, management claims, filings, and high-impact assertions against original or authoritative sources.
+- Separate sourced facts, inferred interpretation, and open diligence questions.
 
-## Tavily Pattern
+## Research Budget
 
-- Quick brief or source check: `search + extract`
-- Full investment memo: `research`
-- Specific cited claim verification: `extract`
-- Large IR/filing page collection: `map + crawl + extract` only when needed
+- Start with a small focused search set covering business context, recent developments, financial/operating signals, and risks/catalysts.
+- Extract only the strongest sources before drafting a concise brief.
+- Add more searches only for named gaps, such as missing filing evidence, missing earnings context, or missing competitor context.
+- Do not use map unless a known investor-relations, filing, transcript, or presentation library has buried pages.
+- Do not use research unless the user asks for a full memo, sector landscape, or multi-source thesis.
 
-## Parameter Guidance
+## Capability Guidance
 
-- Use `topic=finance` for finance-oriented discovery when available.
-- Use `topic=news` and `time_range` for recent events.
-- Use `search_depth=advanced` for filings, financial metrics, quotes, comparable companies, and company-specific claims.
-- Use domain filters for investor relations sites, SEC/filing domains, exchanges, regulators, and reputable financial publications.
-- Use extract `query` and `chunks_per_source=3` for long filings, transcripts, reports, and presentations.
-- Cap extract batches at 20 URLs. If there are more candidates, dedupe, rank by source authority and relevance, then process in batches.
-- Include prior assumptions in research prompts so the research does not spend time rediscovering known context.
-- Report failed extraction or crawl results explicitly, especially for filings, transcripts, IR pages, or cited sources.
+- Use search for fast discovery across companies, sectors, filings, news, competitors, and market context.
+- Use extract to verify metrics, quotes, filings, management claims, transcripts, and other high-impact assertions.
+- Use research for full investment memos, sector landscapes, or multi-source thesis work.
+- Use map or crawl only for large investor-relations, filing, transcript, or presentation libraries.
 
-## Output
+## Query And Source Guidance
 
-Return a concise investor brief:
+- Use company legal name, ticker, product names, segment names, geography, competitor names, and reporting period in queries.
+- For public companies, prioritize original filings, earnings calls, investor presentations, regulator pages, and exchange notices.
+- For private companies, triangulate from company pages, funding announcements, customer stories, hiring, product documentation, and credible press.
+- For recent developments, make the timeframe explicit in the query.
+- For competitor or sector work, build separate subqueries for category, demand drivers, pricing, regulation, customer adoption, and risks.
+- Include known assumptions or prior context in broad research requests to avoid rediscovering what is already known.
+- Report failed or unavailable sources when they affect filings, transcripts, IR pages, market data, or cited claims.
 
-- Executive summary
-- Business overview
-- Market and competitive position
-- Recent developments
-- Financial or operating signals when available
-- Risks
-- Catalysts and watch items
-- Open diligence questions
-- Sources
+## Output Template
+
+Use this markdown structure and adapt sections to the user's mandate:
+
+```markdown
+# Investment Brief: <company/sector/theme>
+
+## Executive Summary
+<concise bullets with the main investor-relevant takeaways>
+
+## Business And Market Context
+- Business model:
+- Customers/segments:
+- Market position:
+- Competitors:
+
+## Recent Developments
+- <dated development with source>
+
+## Signals
+- Financial or operating signals:
+- Product, customer, hiring, or partnership signals:
+- Regulatory or macro signals:
+
+## Risks
+- <risk>: <evidence and uncertainty>
+
+## Catalysts And Watch Items
+- <catalyst/watch item>: <why it matters>
+
+## Open Diligence Questions
+- <question>
+
+## Sources
+- [Source title](URL) - <what it supports>
+```
 
 Do not provide personalized financial advice. State when source coverage is thin, stale, or incomplete.

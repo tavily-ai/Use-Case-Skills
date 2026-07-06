@@ -9,7 +9,7 @@ metadata:
   source: https://github.com/tavily-ai/use-case-skills
 inputs:
   - name: TAVILY_API_KEY
-    description: Tavily API key for Tavily CLI requests.
+    description: Tavily API key for endpoint requests.
     required: true
 ---
 
@@ -17,46 +17,72 @@ inputs:
 
 ## Workflow
 
-Use this skill when product or competitor work benefits from both web discovery and site-level URL discovery.
-Use Tavily through the CLI or equivalent Tavily endpoint skill/tool surface.
+Use search and extract for product, pricing, SKU, feature, and competitor intelligence; use map or crawl for known catalogs and large competitor sites. Keep this skill focused on query construction, site navigation, source filtering, and synthesis; execution mechanics should come from companion endpoint skills.
 
-1. Clarify the category, competitors, geography, target customer, price band, feature set, and desired output format.
-2. Split broad questions into short sub-queries: competitors, product category, pricing, alternatives, reviews, SKUs, specs, marketplaces, and recent launches.
-3. Search for relevant competitors, product pages, category pages, retailer listings, pricing pages, reviews, docs, and official sources.
-4. Filter by relevance score, domain trust, page type, and freshness before extracting.
-5. Extract selected pages with a focused `query` and `chunks_per_source=2-3`.
-6. Use map before crawl on known competitor, retailer, manufacturer, marketplace, docs, or catalog domains.
-7. Crawl only after choosing path patterns and tight limits.
+- Clarify the category, competitors, geography, target customer, price band, feature set, and desired output format.
+- Split broad questions into short subqueries under 400 characters: competitors, product category, pricing, alternatives, reviews, SKUs, specs, marketplaces, and recent launches.
+- Search for relevant competitors, product pages, category pages, retailer listings, pricing pages, reviews, docs, and official sources.
+- Filter by relevance score, domain trust, page type, and freshness before extracting.
+- Extract only selected pages that can support the requested comparison, table, or brief.
+- Use site mapping before broad collection on known competitor, retailer, manufacturer, marketplace, docs, or catalog domains.
+- Collect multiple pages only after choosing relevant path patterns and a tight scope.
 
-## Tavily Pattern
+## Research Budget
 
-- Competitor brief: `search + extract`
-- Known site, unknown URLs: `map + extract`
-- SKU/catalog discovery: `map + crawl + extract`
-- Long market report: `research` only if explicitly requested
+- Start with a small focused search set covering competitors, category, pricing, features/specs, reviews, or launches.
+- Extract only the strongest product, pricing, catalog, marketplace, docs, or review pages before drafting.
+- Add more searches only for named gaps, such as missing pricing, missing SKU evidence, or missing official competitor pages.
+- Do not use map unless a known competitor, retailer, manufacturer, marketplace, docs, or catalog domain needs URL discovery.
+- Do not use crawl until map has identified a narrow product, pricing, category, docs, or catalog section.
 
-## Parameter Guidance
+## Capability Guidance
 
-- Use `search_depth=basic` for broad discovery and `advanced` for precise SKU, pricing, spec, technical, or availability facts.
-- Use `topic=news` and `time_range` for launches, market moves, or product announcements.
-- Use `select_paths` for `/products`, `/pricing`, `/category`, `/collections`, `/docs`, `/blog`, `/changelog`, `/customers`, or `/case-studies`.
-- Use `exclude_paths` for login, cart, checkout, account, admin, tags, and unrelated pages.
-- Cap extract batches at 20 URLs. If there are more candidates, dedupe, rank by page type, source quality, and relevance, then process in batches.
-- Use `extract_depth=advanced` for product tables, pricing matrices, specs, structured content, and dynamic pages.
-- For crawl, start with `max_depth=1`, `max_breadth=20`, `limit=20`, `instructions`, and `chunks_per_source=3`.
-- Report failed extraction or crawl results explicitly, especially when failures affect products, pricing, specs, or competitor coverage.
+- Use search for competitor discovery, pricing checks, feature comparisons, product claims, reviews, and launch signals.
+- Use extract on selected product, pricing, docs, catalog, marketplace, review, or changelog pages.
+- Use map when the domain is known but the relevant product, pricing, changelog, docs, category, or catalog pages are hard to find.
+- Use crawl for SKU/catalog discovery only after narrowing to relevant sections.
+- Use research only when the user asks for a market report rather than product-level evidence.
 
-## Output
+## Query And Source Guidance
 
-For product intelligence, return structured rows:
+- Include product category, buyer segment, geography, price band, SKU/model terms, competitor names, and feature terms in separate subqueries.
+- Prioritize official product pages, pricing pages, docs, catalogs, retailer listings, marketplaces, review sites, customer stories, changelogs, and credible launch coverage.
+- For known sites, look for paths such as products, pricing, category, collections, docs, blog, changelog, customers, or case studies.
+- Avoid irrelevant paths such as login, cart, checkout, account, admin, tag archives, and unrelated content.
+- Dedupe near-identical product pages, regional variants, and syndicated listings before synthesis.
+- Report failed or inaccessible sources when they affect pricing, specs, availability, or competitor coverage.
 
-- Product or SKU
-- Company/brand
-- URL
-- Category
-- Features/specs
-- Pricing or availability when visible
-- Positioning or claims
-- Source confidence
+## Output Template
 
-For competitor analysis, include positioning, feature/pricing differences, evidence URLs, gaps, and recommended follow-up searches.
+Use this markdown structure and adapt columns to the user's request:
+
+```markdown
+# Product And Competitor Intelligence: <category/company>
+
+## Scope
+- Category:
+- Geography:
+- Competitors covered:
+- Source coverage limits:
+
+## Product Comparison
+| Product/SKU | Company | Category | Pricing/availability | Key features/specs | Positioning | Source |
+| --- | --- | --- | --- | --- | --- | --- |
+
+## Competitor Notes
+### <Competitor>
+- Positioning:
+- Product/pricing evidence:
+- Strengths:
+- Gaps or uncertainty:
+
+## Market Signals
+- Launches or changes:
+- Review/customer signals:
+- Distribution or channel signals:
+
+## Follow-Up Searches
+- <query idea>
+```
+
+Keep each claim tied to a source. Mark pricing, availability, or specs as unavailable when they are not visible.

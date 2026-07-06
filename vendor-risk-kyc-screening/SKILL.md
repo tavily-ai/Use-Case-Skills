@@ -9,7 +9,7 @@ metadata:
   source: https://github.com/tavily-ai/use-case-skills
 inputs:
   - name: TAVILY_API_KEY
-    description: Tavily API key for Tavily CLI requests.
+    description: Tavily API key for endpoint requests.
     required: true
 ---
 
@@ -17,43 +17,77 @@ inputs:
 
 ## Workflow
 
-Treat this as research support, not a final compliance determination.
-Use Tavily through the CLI or equivalent Tavily endpoint skill/tool surface.
+Use search and extract for source-grounded vendor, merchant, supplier, counterparty, and KYC research; use map or crawl only for known official directories or registries. Treat this as research support, not a final compliance determination. Execution mechanics should come from companion endpoint skills.
 
-1. Identify the entity, aliases, parent/subsidiaries, executives, jurisdictions, products, and risk categories.
-2. Break the screen into short sub-queries under 400 characters for each alias and risk type: sanctions, enforcement, litigation, regulatory warning, recall, adverse media, cybersecurity incident, supplier risk, and jurisdiction.
-3. Use exact-match style queries for legal names, people, product names, and phrases that must appear verbatim.
-4. Search first, then filter by domain trust and source type before extracting. Prioritize official regulators, sanctions lists, court records, recall databases, company disclosures, and credible news.
-5. Extract selected URLs with a focused `query` and `chunks_per_source=2-3`.
-6. Use map only when a known regulator, registry, or company site needs URL discovery.
-7. Use crawl only for scoped official directories, recalls/advisories, policy pages, or supplier/product pages.
+- Identify the entity, aliases, parent/subsidiaries, executives, jurisdictions, products, and risk categories.
+- Break the screen into short subqueries under 400 characters for each alias and risk type: sanctions, enforcement, litigation, regulatory warning, recall, adverse media, cybersecurity incident, supplier risk, and jurisdiction.
+- Use exact-match style queries for legal names, people, product names, and phrases that must appear verbatim.
+- Search first, then filter by domain trust and source type before extracting. Prioritize official regulators, sanctions lists, court records, recall databases, company disclosures, and credible news.
+- Extract selected sources that can support or rule out specific findings.
+- Use site navigation only when a known regulator, registry, or company site needs URL discovery.
+- Collect multiple pages only for scoped official directories, recalls/advisories, policy pages, or supplier/product pages.
 
-## Tavily Pattern
+## Research Budget
 
-- Default: `search + extract`
-- Official site discovery: `map + extract`
-- Scoped registries or directories: `map + crawl + extract`
-- Full due diligence report: `research`, then verify high-impact claims with extract
+- Start with a small focused search set covering entity aliases, sanctions/regulatory risk, adverse media, and jurisdiction-specific risk.
+- Extract only the strongest official or credible sources before drafting.
+- Add more searches only for named gaps, such as missing alias coverage, missing jurisdiction coverage, or unresolved high-risk findings.
+- Do not use map unless a known regulator, registry, sanctions portal, or company site has specific buried pages to locate.
+- Do not use crawl unless the user asks for scoped collection from an official directory, registry, recalls page, or supplier/product section.
 
-## Parameter Guidance
+## Capability Guidance
 
-- Use `search_depth=advanced` for exact entity names, legal matters, sanctions, enforcement actions, and high-stakes claims.
-- Use `topic=news` with `time_range` for recent adverse media or incidents.
-- Use short `include_domains` lists for regulators, court systems, sanctions databases, recall databases, and trusted publications.
-- Use `extract_depth=advanced` for registry tables, sanctions pages, filings, and structured records.
-- Cap extract batches at 20 URLs. If there are more candidates, dedupe, rank by official source authority and risk relevance, then process in batches.
-- For crawl, start with `max_depth=1`, `limit=20`, strict `select_paths`, semantic `instructions`, and `chunks_per_source=3`.
-- Report failed extraction or crawl results explicitly, especially when failures affect official registries, sanctions pages, or high-risk findings.
+- Use search for most vendor screening, KYC, adverse media, sanctions, enforcement, litigation, recall, and supplier-risk discovery.
+- Use extract on selected official records, regulator pages, sanctions pages, court records, recall databases, company disclosures, and credible news.
+- Use map for official registries, regulator sites, sanctions portals, or company domains with hard-to-find pages.
+- Use crawl for directories or official record sets only after narrowing the paths and risk categories.
+- Use research for full due diligence reports, then verify high-impact claims against original sources.
 
-## Output
+## Query And Source Guidance
 
-Return:
+- Query legal names, trade names, aliases, parent/subsidiary names, executives, product names, and jurisdiction terms separately.
+- Combine entity terms with specific risk concepts: sanctions, enforcement action, consent order, lawsuit, fraud, recall, breach, warning letter, import alert, debarment, bankruptcy, and adverse media.
+- Prioritize regulators, sanctions databases, court systems, recall databases, official registries, company disclosures, and credible news.
+- Treat unsourced aggregators, copied press releases, and name-match-only hits as low confidence until corroborated.
+- Report failed or inaccessible sources when they affect official registries, sanctions pages, or high-risk findings.
 
-- Entity and aliases checked
-- Jurisdictions and risk categories searched
-- Findings by severity: high, medium, low, none found
-- Evidence summary with URLs
-- Confidence and source gaps
-- Recommended next checks
+## Output Template
+
+Use this markdown structure and avoid implying clearance:
+
+```markdown
+# Vendor / KYC Risk Brief: <entity>
+
+## Scope
+- Entity and aliases checked:
+- Jurisdictions:
+- Risk categories:
+- Source coverage limits:
+
+## Findings
+### High
+- Finding:
+- Evidence:
+- Confidence:
+
+### Medium
+- Finding:
+- Evidence:
+- Confidence:
+
+### Low / Watch
+- Finding:
+- Evidence:
+- Confidence:
+
+## No Relevant Findings In Searched Sources
+- <risk category or alias checked>
+
+## Recommended Next Checks
+- <next check>
+
+## Sources
+- [Source title](URL) - <what it supports>
+```
 
 Say "no relevant findings found in searched sources" instead of "cleared" unless the user supplied authoritative internal checks.
