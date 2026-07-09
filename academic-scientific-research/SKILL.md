@@ -19,6 +19,8 @@ inputs:
 
 Use search to discover scholarly sources, extract to verify source content, map or crawl for known scholarly sites and collections, and research for full literature-review synthesis. Keep this skill focused on research planning, source selection, extraction targets, and evidence synthesis; execution mechanics should come from companion endpoint skills.
 
+Treat the guidance below as base guidance; adapt it to the user's request when appropriate.
+
 - Translate the user's question into search terms, synonyms, key entities, and likely source domains.
 - Break broad questions into short subqueries under 400 characters: core concept, synonyms, method names, target population or data, benchmark or dataset, author/lab, and year range.
 - Prefer scholarly and official sources when available: preprint servers, PubMed/NIH pages, journals, conference proceedings, professional societies, standards bodies, and official technical reports.

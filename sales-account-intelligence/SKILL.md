@@ -19,6 +19,8 @@ inputs:
 
 Use search and extract to produce fast, useful sales account context with cited sources; use map or crawl only when a known company site needs scoped navigation. Keep this skill focused on research planning, query construction, source selection, and sales-ready synthesis; execution mechanics should come from companion endpoint skills.
 
+Treat the guidance below as base guidance; adapt it to the user's request when appropriate.
+
 - Define the account, audience, sales motion, geography, and meeting or outreach goal.
 - Split research into short subqueries under 400 characters: company overview, recent news, products, customers, leadership, funding/financials, hiring, partnerships, pain points, and relevant initiatives.
 - Use search for discovery, then filter by source quality before extracting.

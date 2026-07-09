@@ -19,6 +19,8 @@ inputs:
 
 Use search and extract for source-grounded vendor, merchant, supplier, counterparty, and KYC research; use map or crawl only for known official directories or registries. Treat this as research support, not a final compliance determination. Execution mechanics should come from companion endpoint skills.
 
+Treat the guidance below as base guidance; adapt it to the user's request when appropriate.
+
 - Identify the entity, aliases, parent/subsidiaries, executives, jurisdictions, products, and risk categories.
 - Break the screen into short subqueries under 400 characters for each alias and risk type: sanctions, enforcement, litigation, regulatory warning, recall, adverse media, cybersecurity incident, supplier risk, and jurisdiction.
 - Use exact-match style queries for legal names, people, product names, and phrases that must appear verbatim.

@@ -19,6 +19,8 @@ inputs:
 
 Use search and extract for quick investor briefs and source checks, research for full investment memos, and map or crawl only for large known source collections. Keep this skill focused on research design, source selection, verification, and synthesis; execution mechanics should come from companion endpoint skills.
 
+Treat the guidance below as base guidance; adapt it to the user's request when appropriate.
+
 - Define the target, investor lens, geography, timeframe, asset type, and desired depth.
 - For quick briefs, split into short subqueries under 400 characters: business overview, market position, financial/operating signals, recent developments, competitors, risks, catalysts, and valuation/comps if requested.
 - Prefer filings, investor relations pages, earnings materials, company pages, regulators, exchanges, reputable financial media, and market sources.

@@ -19,6 +19,8 @@ inputs:
 
 Use search and extract to enrich security entities with authoritative and recent evidence; use map or crawl for known vendor portals or advisory collections. Keep this skill focused on query construction, source priority, verification, and security synthesis; execution mechanics should come from companion endpoint skills.
 
+Treat the guidance below as base guidance; adapt it to the user's request when appropriate.
+
 - Identify the input type: CVE, IOC, malware/tool, threat actor, vendor/product, advisory URL, incident, or campaign.
 - Break the task into short subqueries under 400 characters: identifier, affected product, exploit status, vendor advisory, patches, mitigations, exploitation in the wild, and recent reporting.
 - Search first, using exact-match style queries for CVEs, hashes, domains, IPs, advisory IDs, and malware names.

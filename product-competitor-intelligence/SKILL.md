@@ -19,6 +19,8 @@ inputs:
 
 Use search and extract for product, pricing, SKU, feature, and competitor intelligence; use map or crawl for known catalogs and large competitor sites. Keep this skill focused on query construction, site navigation, source filtering, and synthesis; execution mechanics should come from companion endpoint skills.
 
+Treat the guidance below as base guidance; adapt it to the user's request when appropriate.
+
 - Clarify the category, competitors, geography, target customer, price band, feature set, and desired output format.
 - Split broad questions into short subqueries under 400 characters: competitors, product category, pricing, alternatives, reviews, SKUs, specs, marketplaces, and recent launches.
 - Search for relevant competitors, product pages, category pages, retailer listings, pricing pages, reviews, docs, and official sources.
