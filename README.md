@@ -38,10 +38,10 @@ Default execution discipline:
 | [`investment-research-briefs`](investment-research-briefs/SKILL.md) | Concise investor briefs, sector snapshots, and risk/catalyst memos | research synthesis, source verification |
 | [`academic-scientific-research`](academic-scientific-research/SKILL.md) | Papers, scientific literature, methods, evidence summaries | scholarly discovery, evidence extraction |
 | [`migrate-to-tavily`](migrate-to-tavily/explanation.md) | Migrating existing Exa/Firecrawl/Perplexity/Parallel integrations to Tavily | code mapping, in-place rewrite |
-| [`tavily-enrich`](tavily-enrich/explanation.md) | Filling in missing fields on an existing list of companies, people, or products | structured per-row research |
-| [`tavily-findall`](tavily-findall/explanation.md) | Building a deduplicated list of entities matching given criteria | structured list research |
-| [`tavily-monitor`](tavily-monitor/explanation.md) | Watching a page, site, or topic for changes on a recurring schedule | extract/search + scheduled orchestration |
-| [`tavily-runs`](tavily-runs/explanation.md) | Finding a past research run by topic instead of by run ID | local run index |
+| [`fill-missing-fields`](fill-missing-fields/explanation.md) | Filling in missing fields on an existing list of companies, people, or products | structured per-row research |
+| [`build-entity-list`](build-entity-list/explanation.md) | Building a deduplicated list of entities matching given criteria | structured list research |
+| [`watch-for-changes`](watch-for-changes/explanation.md) | Watching a page, site, or topic for changes on a recurring schedule | extract/search + scheduled orchestration |
+| [`past-research-search`](past-research-search/explanation.md) | Finding a past research run by topic instead of by run ID | local run index |
 
 ## Design
 

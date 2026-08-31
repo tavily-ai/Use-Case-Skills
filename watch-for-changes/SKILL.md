@@ -1,11 +1,11 @@
 ---
-name: tavily-monitor
+name: watch-for-changes
 description: |
   Watch a page, site, or topic for changes on a recurring schedule and only speak up when something meaningfully changed. Use this skill when the user wants to track a competitor's pricing page, watch for regulatory filings, keep an eye on a changelog, or says "monitor this page", "watch for changes", "alert me if X changes", "track this site", or "let me know when this updates". This is an orchestration skill built from Tavily's extract/search plus Claude Code's scheduling — Tavily itself has no scheduling API, so this skill documents that explicitly rather than implying otherwise.
 allowed-tools: Bash(tvly *), Bash(python3 *)
 ---
 
-# tavily monitor
+# watch-for-changes
 
 Check something on the web on a recurring cadence, compare it to what you saw last time, and only report back when there's an actual change.
 

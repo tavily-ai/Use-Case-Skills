@@ -60,11 +60,11 @@ Not this skill:
 | `parallel-web-search` | `client.search(...)` → [tavily-search](../tavily-search/SKILL.md) | |
 | `parallel-web-extract` | `client.extract(...)` → [tavily-extract](../tavily-extract/SKILL.md) | |
 | `parallel-deep-research` | `client.research(..., model="pro")` → [tavily-research](../tavily-research/SKILL.md) | |
-| `parallel-findall` | [tavily-findall](../tavily-findall/SKILL.md) | Same underlying idea — structured list of matching entities |
-| `parallel-data-enrichment` | [tavily-enrich](../tavily-enrich/SKILL.md) | Same underlying idea — fill in fields on an existing list |
-| `parallel-monitor` | [tavily-monitor](../tavily-monitor/SKILL.md) | Parallel's is a hosted platform feature; Tavily's equivalent is orchestration-based (see that skill's notes) — call this difference out to the user rather than promising an identical hosted experience |
+| `parallel-findall` | [build-entity-list](../build-entity-list/SKILL.md) | Same underlying idea — structured list of matching entities |
+| `parallel-data-enrichment` | [fill-missing-fields](../fill-missing-fields/SKILL.md) | Same underlying idea — fill in fields on an existing list |
+| `parallel-monitor` | [watch-for-changes](../watch-for-changes/SKILL.md) | Parallel's is a hosted platform feature; Tavily's equivalent is orchestration-based (see that skill's notes) — call this difference out to the user rather than promising an identical hosted experience |
 | `status` / `result` (run ID lookup) | `client.get_research(request_id)` / `tvly research status`/`poll` | Built into [tavily-research](../tavily-research/SKILL.md) rather than separate calls |
-| `parallel-memory` | [tavily-runs](../tavily-runs/SKILL.md) | Tavily has no hosted memory store — this is a local logging convention, say so |
+| `parallel-memory` | [past-research-search](../past-research-search/SKILL.md) | Tavily has no hosted memory store — this is a local logging convention, say so |
 
 ## Tips
 
@@ -76,4 +76,4 @@ Not this skill:
 ## See also
 
 - [tavily-best-practices](../tavily-best-practices/SKILL.md) — full SDK reference for the target Tavily integration
-- [tavily-enrich](../tavily-enrich/SKILL.md), [tavily-findall](../tavily-findall/SKILL.md), [tavily-monitor](../tavily-monitor/SKILL.md), [tavily-runs](../tavily-runs/SKILL.md) — Tavily-side equivalents for Parallel's higher-level skills
+- [fill-missing-fields](../fill-missing-fields/SKILL.md), [build-entity-list](../build-entity-list/SKILL.md), [watch-for-changes](../watch-for-changes/SKILL.md), [past-research-search](../past-research-search/SKILL.md) — Tavily-side equivalents for Parallel's higher-level skills

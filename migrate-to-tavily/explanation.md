@@ -17,7 +17,7 @@ A mapping table per competitor, similar in shape to reference docs already in th
 - Exa `search` / `get_contents` → `tavily-search` / `tavily-extract`
 - Firecrawl `scrape` / `crawl` / `map` → `tavily-extract` / `tavily-crawl` / `tavily-map`
 - Perplexity `sonar` research calls → `tavily-research`
-- Parallel `web-search` / `web-extract` / `deep-research` / `findall` / `data-enrichment` / `monitor` / `memory` → `tavily-search` / `tavily-extract` / `tavily-research` / `tavily-findall` / `tavily-enrich` / `tavily-monitor` / `tavily-runs`
+- Parallel `web-search` / `web-extract` / `deep-research` / `findall` / `data-enrichment` / `monitor` / `memory` → `tavily-search` / `tavily-extract` / `tavily-research` / `build-entity-list` / `fill-missing-fields` / `watch-for-changes` / `past-research-search`
 
 ## Ways to Use This Skill
 

@@ -1,4 +1,4 @@
-# tavily-enrich — Explanation
+# fill-missing-fields — Explanation
 
 Skill definition: [SKILL.md](SKILL.md)
 

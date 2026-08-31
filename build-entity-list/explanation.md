@@ -1,4 +1,4 @@
-# tavily-findall — Explanation
+# findall — Explanation
 
 Skill definition: [SKILL.md](SKILL.md)
 
@@ -12,10 +12,10 @@ It searches the web from several angles, pulls out the specific things (companie
 
 ## Built With
 
-This is genuinely `tavily-research` under the hood, with its structured-output (`output_schema`) feature shaped as a *list* (e.g. `{results: [{name, description, source_url}]}`) instead of a single-entity object like `tavily-enrich` uses. That's a real, deliberate distinction worth its own skill even though the plumbing is shared:
+This is genuinely `tavily-research` under the hood, with its structured-output (`output_schema`) feature shaped as a *list* (e.g. `{results: [{name, description, source_url}]}`) instead of a single-entity object like `fill-missing-fields` uses. That's a real, deliberate distinction worth its own skill even though the plumbing is shared:
 
-- `tavily-enrich` = you already have the rows, you're adding columns.
-- `tavily-findall` = you don't have rows yet, you're building the list itself.
+- `fill-missing-fields` = you already have the rows, you're adding columns.
+- `build-entity-list` = you don't have rows yet, you're building the list itself.
 
 ## Ways to Use This Skill
 

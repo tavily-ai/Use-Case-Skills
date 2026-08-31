@@ -1,11 +1,11 @@
 ---
-name: tavily-findall
+name: build-entity-list
 description: |
-  Build a structured, deduplicated list of entities matching a description you give — companies, people, products, laws, anything — instead of a pile of articles you have to read yourself. Use this skill when the user doesn't have a starting list and wants one built from criteria, or says "find all companies that...", "find every X that does Y", "list all the...", "who are all the...", "build me a list of...", or describes a filter/criteria they want matched across the web. Returns a clean table of matching entities with supporting sources. Do NOT use this when the user already has a list and wants fields added to it (see tavily-enrich), or wants one exhaustive report on a single known entity (see tavily-research).
+  Build a structured, deduplicated list of entities matching a description you give — companies, people, products, laws, anything — instead of a pile of articles you have to read yourself. Use this skill when the user doesn't have a starting list and wants one built from criteria, or says "find all companies that...", "find every X that does Y", "list all the...", "who are all the...", "build me a list of...", or describes a filter/criteria they want matched across the web. Returns a clean table of matching entities with supporting sources. Do NOT use this when the user already has a list and wants fields added to it (see fill-missing-fields), or wants one exhaustive report on a single known entity (see tavily-research).
 allowed-tools: Bash(tvly *), Bash(python3 *)
 ---
 
-# tavily findall
+# build-entity-list
 
 Find every entity on the web that matches a natural-language description, and return one organized, deduplicated list — not a pile of search results you have to read and compile yourself.
 
@@ -38,12 +38,12 @@ tvly login --api-key tvly-YOUR_KEY
 - Examples: "AI startups that raised a Series A in 2026", "US states that passed a data-privacy law this year", "open-source alternatives to X"
 
 Not this skill:
-- You already have the list and want fields added to each row → [tavily-enrich](../tavily-enrich/SKILL.md)
+- You already have the list and want fields added to each row → [fill-missing-fields](../fill-missing-fields/SKILL.md)
 - You want one exhaustive report on a single, already-known entity → [tavily-research](../tavily-research/SKILL.md)
 
 ## How it works
 
-Same underlying primitive as `tavily-enrich` — `tavily-research`'s `--output-schema` — but shaped as a *list*, not a single object, and combined with multiple search angles to maximize coverage before deduplicating.
+Same underlying primitive as `fill-missing-fields` — `tavily-research`'s `--output-schema` — but shaped as a *list*, not a single object, and combined with multiple search angles to maximize coverage before deduplicating.
 
 1. Turn the user's criteria into a research query, and define a schema shaped as an array of matches.
 2. Run `tvly research` (often with `--model pro` — finding *every* match needs more thorough multi-source search than a single narrow lookup).
@@ -132,5 +132,5 @@ Same underlying flags as [tavily-research](../tavily-research/SKILL.md):
 ## See also
 
 - [tavily-research](../tavily-research/SKILL.md) — the underlying structured-output capability this skill wraps
-- [tavily-enrich](../tavily-enrich/SKILL.md) — for completing a list you already have, rather than building one
+- [fill-missing-fields](../fill-missing-fields/SKILL.md) — for completing a list you already have, rather than building one
 - [tavily-dynamic-search](../tavily-dynamic-search/SKILL.md) — the multi-angle-search-then-dedupe pattern this skill borrows

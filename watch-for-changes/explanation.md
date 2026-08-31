@@ -1,4 +1,4 @@
-# tavily-monitor — Explanation
+# watch-for-changes — Explanation
 
 Skill definition: [SKILL.md](SKILL.md)
 

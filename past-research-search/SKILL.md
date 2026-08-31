@@ -1,11 +1,11 @@
 ---
-name: tavily-runs
+name: past-research-search
 description: |
   Look up a past research run by what you asked, not by remembering its run ID. Use this skill when the user wants to revisit a previous tavily-research task and doesn't have the request_id handy, or says "what did that research on X find again", "pull up my last research on Y", "show me past research tasks", or "find that report I ran earlier". Also use it right after a research run to log it, so it can be found later. Do NOT use this for a fresh research task — start there with tavily-research directly.
 allowed-tools: Bash(tvly *), Bash(python3 *)
 ---
 
-# tavily runs
+# past-research-search
 
 Keep a local, searchable record of past `tavily-research` runs, so they can be found later by topic instead of by remembering a `request_id`.
 

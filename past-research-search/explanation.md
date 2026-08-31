@@ -1,4 +1,4 @@
-# tavily-runs — Explanation
+# past-research-search — Explanation
 
 Skill definition: [SKILL.md](SKILL.md)
 

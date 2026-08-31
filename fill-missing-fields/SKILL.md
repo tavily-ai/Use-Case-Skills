@@ -1,11 +1,11 @@
 ---
-name: tavily-enrich
+name: fill-missing-fields
 description: |
-  Fill in missing data on a list of companies, people, or products by looking each one up on the web. Use this skill when the user has a spreadsheet, CSV, or list of names and wants missing fields added — CEO, funding raised, headquarters, employee count, contact info, pricing, or any other web-discoverable attribute — or says "enrich this list", "fill in the missing columns", "add company data from the web", "find the CEO for each of these", "complete this spreadsheet", or "add contact info to this list". Takes a list you already have and adds columns to it. Do NOT use this for building a list from scratch (see tavily-findall) or for single-entity deep research reports (see tavily-research).
+  Fill in missing data on a list of companies, people, or products by looking each one up on the web. Use this skill when the user has a spreadsheet, CSV, or list of names and wants missing fields added — CEO, funding raised, headquarters, employee count, contact info, pricing, or any other web-discoverable attribute — or says "enrich this list", "fill in the missing columns", "add company data from the web", "find the CEO for each of these", "complete this spreadsheet", or "add contact info to this list". Takes a list you already have and adds columns to it. Do NOT use this for building a list from scratch (see build-entity-list) or for single-entity deep research reports (see tavily-research).
 allowed-tools: Bash(tvly *), Bash(python3 *)
 ---
 
-# tavily enrich
+# fill-missing-fields
 
 Add web-sourced fields to a list of entities you already have — companies, people, products, anything with a name. Turns a bare list (or a spreadsheet with gaps) into a completed table.
 
@@ -39,7 +39,7 @@ tvly login --api-key tvly-YOUR_KEY
 - You know exactly what fields you want — this is about breadth (many rows), not depth (one exhaustive report)
 
 Not this skill:
-- No existing list yet, you want to *build* one from criteria → [tavily-findall](../tavily-findall/SKILL.md)
+- No existing list yet, you want to *build* one from criteria → [build-entity-list](../build-entity-list/SKILL.md)
 - One entity, want an exhaustive deep-dive → [tavily-research](../tavily-research/SKILL.md)
 
 ## How it works
@@ -135,4 +135,4 @@ Same underlying flags as [tavily-research](../tavily-research/SKILL.md):
 ## See also
 
 - [tavily-research](../tavily-research/SKILL.md) — the underlying structured-output capability this skill wraps
-- [tavily-findall](../tavily-findall/SKILL.md) — for building a list from scratch instead of completing one you already have
+- [build-entity-list](../build-entity-list/SKILL.md) — for building a list from scratch instead of completing one you already have
