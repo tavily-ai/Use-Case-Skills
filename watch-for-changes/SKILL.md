@@ -1,7 +1,7 @@
 ---
 name: watch-for-changes
 description: |
-  Watch a page, site, or topic for changes on a recurring schedule and only speak up when something meaningfully changed. Use this skill when the user wants to track a competitor's pricing page, watch for regulatory filings, keep an eye on a changelog, or says "monitor this page", "watch for changes", "alert me if X changes", "track this site", or "let me know when this updates". This is an orchestration skill built from Tavily's extract/search plus Claude Code's scheduling — Tavily itself has no scheduling API, so this skill documents that explicitly rather than implying otherwise.
+  Watch a page, site, or topic for changes on a recurring schedule and only speak up when something meaningfully changed. Use this skill when the user wants to track a competitor's pricing page, watch for regulatory filings, keep an eye on a changelog, or says "monitor this page", "watch for changes", "alert me if X changes", "track this site", or "let me know when this updates". This is an orchestration skill built from Tavily's extract/search plus a recurring-task mechanism — Tavily itself has no scheduling API, so this skill documents that explicitly rather than implying otherwise. The recurring-task step is written generically so it works under any agent/CLI, not just Claude Code.
 allowed-tools: Bash(tvly *), Bash(python3 *)
 ---
 
@@ -24,9 +24,12 @@ See [tavily-cli](../tavily-cli/SKILL.md) for alternative install methods and aut
 Tavily's API is stateless — it has no built-in scheduling, alerting, or "watch this" endpoint. This skill combines:
 
 - **Tavily** (`tvly extract` or `tvly search`) for the actual "check the thing" step
-- **Claude Code's scheduling primitives** (the `schedule` skill for cron-based recurring runs, or `/loop` for self-paced polling) for the "keep doing this on a cadence" step
+- **Some recurring-task mechanism** for the "keep doing this on a cadence" step. Use whatever your environment offers:
+  - Running in Claude Code: the `schedule` skill (cron-based, unattended) or `/loop` (self-paced, session-scoped)
+  - Any other agent/CLI with its own scheduling or long-running-task primitive: use that
+  - No agent-level scheduler available: a plain OS cron job / systemd timer / Windows Task Scheduler entry that re-invokes the agent (or the diff script directly) on the target cadence, or a scheduled CI job (e.g. GitHub Actions `schedule` trigger)
 
-Be upfront with the user about this — "monitor" here means "Claude Code re-runs a check for you," not "Tavily is watching this in the background on its own."
+Be upfront with the user about this — "monitor" here means "something re-runs this check for you on a cadence," not "Tavily is watching this in the background on its own." Ask the user which mechanism is available/preferred if it isn't obvious.
 
 ## When to use
 
@@ -36,7 +39,7 @@ Be upfront with the user about this — "monitor" here means "Claude Code re-run
 ## How it works
 
 1. **Baseline:** extract the target page (or run the target search) once, save the content and a hash/fingerprint of it to a local snapshot file.
-2. **Schedule:** set up a recurring check (via the `schedule` skill for unattended cron, or `/loop` for an interactive session) at the cadence the user wants.
+2. **Schedule:** set up a recurring check at the cadence the user wants, using whatever recurring-task mechanism is available (Claude Code's `schedule` skill or `/loop`, another agent's own scheduler, or plain cron/CI if running standalone).
 3. **Each run:** re-extract, compare to the saved snapshot.
    - No meaningful difference → stay quiet, update the snapshot's "last checked" timestamp, don't bother the user.
    - Real difference → summarize what changed and notify.
@@ -68,7 +71,7 @@ print("Baseline saved.")
 PYEOF
 ```
 
-**2. Set up the recurring check** — use the `schedule` skill for an unattended cron job, or `/loop <interval>` for a session-scoped recurring check. Point it at the diff script below.
+**2. Set up the recurring check** — point whatever recurring-task mechanism is available at the diff script below: the `schedule` skill or `/loop <interval>` in Claude Code, an equivalent scheduling primitive in another agent, or a plain cron entry / scheduled CI job if running standalone.
 
 **3. Each scheduled run — diff against the saved snapshot:**
 
@@ -113,7 +116,7 @@ PYEOF
 - **Don't over-schedule.** Every check costs an API call — pick a cadence that matches how often the target realistically changes.
 - **Narrow what you hash.** Whole-page hashing catches every cosmetic change (ads, timestamps, view counts) as a "change" — extract just the section that matters when possible.
 - **Say what kind of change, not just that one happened.** "Changed" is a weak alert — "the Pro plan price moved from $49 to $59" is a useful one.
-- **Be explicit this is Claude Code doing the scheduling**, not a Tavily background service — if the user closes the session or the cron isn't wired up, monitoring stops.
+- **Be explicit that some external mechanism is doing the scheduling**, not a Tavily background service — if the session closes, the loop stops, or the cron/CI job isn't actually wired up, monitoring stops.
 
 ## See also
 
