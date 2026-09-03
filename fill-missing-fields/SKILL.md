@@ -11,13 +11,8 @@ Add web-sourced fields to a list of entities you already have — companies, peo
 
 ## Before running any command
 
-If `tvly` is not found on PATH, install it first:
+If `tvly` is not found on PATH, see https://github.com/tavily-ai/tavily-cli for installation instructions.
 
-```bash
-curl -fsSL https://cli.tavily.com/install.sh | bash && tvly login
-```
-
-See [tavily-cli](../tavily-cli/SKILL.md) for alternative install methods and auth options.
 
 ## Known issue: `--output-schema` currently requires API-key auth, not OAuth
 

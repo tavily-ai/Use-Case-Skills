@@ -11,13 +11,7 @@ Find every entity on the web that matches a natural-language description, and re
 
 ## Before running any command
 
-If `tvly` is not found on PATH, install it first:
-
-```bash
-curl -fsSL https://cli.tavily.com/install.sh | bash && tvly login
-```
-
-See [tavily-cli](../tavily-cli/SKILL.md) for alternative install methods and auth options.
+If `tvly` is not found on PATH, see https://github.com/tavily-ai/tavily-cli for installation instructions.
 
 ## Known issue: `--output-schema` currently requires API-key auth, not OAuth
 

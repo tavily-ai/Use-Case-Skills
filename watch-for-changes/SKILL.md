@@ -11,13 +11,7 @@ Check something on the web on a recurring cadence, compare it to what you saw la
 
 ## Before running any command
 
-If `tvly` is not found on PATH, install it first:
-
-```bash
-curl -fsSL https://cli.tavily.com/install.sh | bash && tvly login
-```
-
-See [tavily-cli](../tavily-cli/SKILL.md) for alternative install methods and auth options.
+If `tvly` is not found on PATH, see https://github.com/tavily-ai/tavily-cli for installation instructions.
 
 ## Important: this is orchestration, not a Tavily platform feature
 
