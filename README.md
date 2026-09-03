@@ -37,6 +37,11 @@ Default execution discipline:
 | [`threat-intelligence-enrichment`](threat-intelligence-enrichment/SKILL.md) | CVE, IOC, advisory, exploit, mitigation, and incident enrichment | exact-identifier discovery, authoritative extraction |
 | [`investment-research-briefs`](investment-research-briefs/SKILL.md) | Concise investor briefs, sector snapshots, and risk/catalyst memos | research synthesis, source verification |
 | [`academic-scientific-research`](academic-scientific-research/SKILL.md) | Papers, scientific literature, methods, evidence summaries | scholarly discovery, evidence extraction |
+| [`migrate-to-tavily`](migrate-to-tavily/explanation.md) | Migrate existing Exa/Firecrawl/Perplexity/Parallel integrations to Tavily | code mapping, in-place rewrite |
+| [`fill-missing-fields`](fill-missing-fields/explanation.md) | Find and fill in missing fields on an existing list of companies, people, or products | structured per-row research |
+| [`build-entity-list`](build-entity-list/explanation.md) | Build a deduplicated list of entities matching given criteria | structured list research |
+| [`watch-for-changes`](watch-for-changes/explanation.md) | Watch a page, site, or topic for changes on a recurring schedule | extract/search + scheduled orchestration |
+| [`past-research-search`](past-research-search/explanation.md) | Find a past research run by topic instead of by run ID | local run index |
 
 ## Design
 
