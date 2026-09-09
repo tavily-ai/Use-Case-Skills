@@ -37,6 +37,7 @@ Default execution discipline:
 | [`threat-intelligence-enrichment`](threat-intelligence-enrichment/SKILL.md) | CVE, IOC, advisory, exploit, mitigation, and incident enrichment | exact-identifier discovery, authoritative extraction |
 | [`investment-research-briefs`](investment-research-briefs/SKILL.md) | Concise investor briefs, sector snapshots, and risk/catalyst memos | research synthesis, source verification |
 | [`academic-scientific-research`](academic-scientific-research/SKILL.md) | Papers, scientific literature, methods, evidence summaries | scholarly discovery, evidence extraction |
+| [`developer-research`](developer-research/SKILL.md) | Library behavior, API contracts, errors, bug fixes, and migrations | primary-source discovery, targeted extraction, version/release verification |
 | [`migrate-to-tavily`](migrate-to-tavily/explanation.md) | Migrate existing Exa/Firecrawl/Perplexity/Parallel integrations to Tavily | code mapping, in-place rewrite |
 | [`fill-missing-fields`](fill-missing-fields/explanation.md) | Find and fill in missing fields on an existing list of companies, people, or products | structured per-row research |
 | [`build-entity-list`](build-entity-list/explanation.md) | Build a deduplicated list of entities matching given criteria | structured list research |
@@ -44,5 +45,7 @@ Default execution discipline:
 | [`past-research-search`](past-research-search/explanation.md) | Find a past research run by topic instead of by run ID | local run index |
 
 ## Design
+
+For an isolated Codex trial of `developer-research`, see the [manual test guide and sample queries](tests/developer-research.md).
 
 These skills are designed to compose endpoint-oriented skills from `tavily-ai/skills` into marketable workflows that map to common customer needs.
