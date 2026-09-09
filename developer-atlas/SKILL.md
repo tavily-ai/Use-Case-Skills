@@ -1,5 +1,5 @@
 ---
-name: developer-research
+name: developer-atlas
 description: Investigate library behavior, API contracts, errors, bug fixes, and migrations using Tavily and primary developer sources. Use when a coding question needs external documentation, issues, pull requests, or release evidence; skip self-contained code edits and questions answered by the supplied code alone.
 license: MIT
 metadata:
@@ -9,7 +9,7 @@ metadata:
   source: https://github.com/tavily-ai/use-case-skills
 ---
 
-# Developer Research
+# Tavily Developer Atlas
 
 Answer the coding question with evidence that applies to the user's version and environment. Use Tavily to discover official docs, repository discussions, changes, and releases, then read the sources needed to verify the answer. This workflow uses general web search; it does not assume a dedicated code index or complete repository coverage.
 
@@ -65,4 +65,4 @@ Lead with the answer or likely explanation, then include only what the question 
 - **Action:** a supported usage example, workaround, or next diagnostic step. Research alone does not authorize repository edits, upgrades, installs, or posting comments.
 - **Limits:** missing release evidence, failed sources, unresolved disagreement, and tests not performed.
 
-For manual validation, the source repository includes an [isolated Codex guide and test cases](https://github.com/tavily-ai/use-case-skills/blob/main/tests/developer-research.md).
+For manual validation, the source repository includes an [isolated Codex discovery guide and test cases](https://github.com/tavily-ai/use-case-skills/blob/main/tests/developer-atlas.md).

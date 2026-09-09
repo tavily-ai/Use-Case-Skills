@@ -1,4 +1,4 @@
-# Tool selection and examples
+# Developer Atlas: tool selection and examples
 
 Use one working Tavily interface. The commands below were checked against `tvly 0.1.6`; installed help and connected MCP schemas take precedence when versions differ. The [Search API](https://docs.tavily.com/documentation/api-reference/endpoint/search) and [Extract API](https://docs.tavily.com/documentation/api-reference/endpoint/extract) document the REST contracts.
 
